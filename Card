@@ -1,0 +1,125 @@
+<!-- kpi.component.html -->
+<div class="kpi-container">
+  <div class="kpi-card" (click)="onCardClick(1)" [class.active]="activeCard === 1">
+    <div class="kpi-left">
+      <div class="kpi-title">Title 1</div>
+      <div class="kpi-number">123</div>
+    </div>
+    <div class="kpi-right">
+      <i class="material-icons">star</i>
+      <div class="current-year">2023</div>
+    </div>
+  </div>
+
+  <div class="kpi-card" (click)="onCardClick(2)" [class.active]="activeCard === 2">
+  <div class="kpi-left">
+      <div class="kpi-title">Title 1</div>
+      <div class="kpi-number">123</div>
+    </div>
+    <div class="kpi-right">
+      <i class="material-icons">star</i>
+      <div class="current-year">2023</div>
+    </div>  </div>
+
+  <div class="kpi-card" (click)="onCardClick(3)" [class.active]="activeCard === 3">
+  <div class="kpi-left">
+      <div class="kpi-title">Title 1</div>
+      <div class="kpi-number">123</div>
+    </div>
+    <div class="kpi-right">
+      <i class="material-icons">star</i>
+      <div class="current-year">2023</div>
+    </div>  </div>
+</div>
+
+
+/* kpi.component.css */
+
+/* Common styles for all devices */
+.kpi-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 20px; /* Add space between cards and other content */
+}
+
+.kpi-card {
+  background-color: #f0f0f0; /* Add the background color for the cards */
+  border-radius: 8px; /* Add rounded corners */
+  overflow: hidden; /* Ensure rounded corners are applied */
+  cursor: pointer;
+  transition: transform 0.3s;
+  flex-basis: calc(33.33% - 20px); /* One-third of the available space with gutter */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row; /* Adjusted to row */
+}
+
+.kpi-card:hover {
+  transform: scale(1.05); /* Add a slight scale effect on hover */
+}
+
+.kpi-content {
+  flex: 1;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.kpi-left,
+.kpi-right {
+  padding: 10px;
+  flex: 1;
+}
+
+.kpi-right {
+  background-color: #f0f0f0; /* Add background color for the right section */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.kpi-title {
+  font-weight: bold;
+}
+
+.material-icons {
+  font-size: 24px;
+}
+
+.current-year {
+  font-size: 0.8em;
+  color: #888;
+}
+
+/* Responsive styles for tablet */
+@media (max-width: 768px) {
+  .kpi-card {
+    flex-basis: calc(50% - 20px); /* Half of the available space with gutter */
+  }
+}
+
+/* Responsive styles for mobile */
+@media (max-width: 480px) {
+  .kpi-card {
+    flex-basis: calc(100% - 20px); /* Full width with gutter */
+  }
+}
+
+
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
+import { AppComponent } from './app.component';
+
+@NgModule({
+  imports: [
+    BrowserModule
+  ],
+  declarations: [
+    AppComponent
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
