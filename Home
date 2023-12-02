@@ -1,1 +1,151 @@
-Some goes here
+<div class="navbar">
+  <div class="logo">Your Logo</div>
+  <div class="menu-links">
+    <a routerLink="/" routerLinkActive="active" (click)="closeMenu()">Home</a>
+    <a routerLink="/about" routerLinkActive="active" (click)="closeMenu()">About</a>
+    <a routerLink="/services" routerLinkActive="active" (click)="closeMenu()">Services</a>
+    <a routerLink="/contact" routerLinkActive="active" (click)="closeMenu()">Contact</a>
+    <a routerLink="/portfolio" routerLinkActive="active" (click)="closeMenu()">Portfolio</a>
+  </div>
+  <div class="icons">
+    <img src="path/to/bell-icon.png" alt="Bell Icon" (click)="handleBellIconClick()">
+    <img src="path/to/cog-icon.png" alt="Cog Icon" (click)="handleCogIconClick()">
+  </div>
+ <div class="avatar" (click)="toggleAvatarMenu()">
+    {{ getUserInitials() }}
+  </div>  <div class="avatar-menu" *ngIf="isAvatarMenuOpen">
+    <!-- Add menu items or user details here -->
+    User Profile
+  </div>
+</div>
+
+
+/* Common styles for all devices */
+.navbar {
+  background-color: #1a1a24;
+  color: white;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.5em;
+}
+
+.menu-links {
+  display: flex;
+  gap: 10px;
+}
+
+.menu-links a {
+  text-decoration: none;
+  color: white;
+  position: relative;
+}
+
+.menu-links a:hover::after,
+.menu-links a.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 100%;
+  height: 2px;
+  background-color: white;
+}
+
+.icons {
+  display: flex;
+  gap: 10px;
+}
+
+.icons img {
+  width: 20px; /* Adjust the size as needed */
+}
+
+.avatar {
+  background-color: #2980b9;
+  color: white;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.avatar-menu {
+  position: absolute;
+  top: 50px;
+  right: 10px;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  display: none;
+}
+
+/* Responsive styles for mobile and tablet */
+@media (max-width: 768px) {
+  .menu-links, .icons {
+    display: flex;
+  }
+}
+
+import { Component, VERSION, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'my-app',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+
+export class AppComponent implements OnInit {
+  isAvatarMenuOpen: boolean = false;
+  userName: string = "Ram Kumar";
+
+  constructor() {}
+
+  ngOnInit() {}
+  
+  getUserInitials(): string {
+  if (this.userName) {
+    const names = this.userName.split(' ');
+
+    if (names.length >= 2) {
+      // Take the first letter of the first name and the first letter of the last name
+      const firstNameInitial = names[0].charAt(0).toUpperCase();
+      const lastNameInitial = names[names.length - 1].charAt(0).toUpperCase();
+
+      return `${firstNameInitial}${lastNameInitial}`;
+    } else if (names.length === 1) {
+      // If there is only one name, take the first two letters of that name
+      return names[0].slice(0, 2).toUpperCase();
+    } else {
+      // No name provided
+      return '';
+    }
+  } else {
+    return '';
+  }
+}
+  toggleAvatarMenu() {
+    this.isAvatarMenuOpen = !this.isAvatarMenuOpen;
+  }
+
+  closeMenu() {
+    // Add logic to close the menu, e.g., navigate to the selected route
+    this.isAvatarMenuOpen = false;
+  }
+
+  handleBellIconClick() {
+    // Add logic for handling bell icon click
+  }
+
+  handleCogIconClick() {
+    // Add logic for handling cog icon click
+  }
+}
